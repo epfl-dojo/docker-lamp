@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    ports:
+      - "80:80"
+    image: epfldojo:php
+    build: php-part
+    volumes:
+      - .:/var/www/html
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./db_data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+#volumes:
+  #my-datavolume:
